@@ -30,7 +30,7 @@ jobs:
         run: echo "MONGODB_USERNAME=${MONGODB_USERNAME}" >> $GITHUB_ENV
       - name: Output information
         run: |
-         echo "MONGODB_USERNAME: $MONGODB_USERNAME
+         echo "MONGODB_USERNAME: $MONGODB_USERNAME"
     outputs :
       mongodb_username : ${{ env.MONGODB_USERNAME }}
   deploy:
