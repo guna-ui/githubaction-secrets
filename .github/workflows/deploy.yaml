@@ -27,10 +27,10 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Set environment variables for next job
-        run: echo "MONGODB_USERNAME=${MONGODB_USERNAME}" >> $GITHUB_ENV
+        run: echo "mongodb_user=${MONGODB_USERNAME}" >> $GITHUB_ENV
       - name: Output information
         run: |
-         echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+         echo "MONGODB_USERNAME: $mongodb_user"
     outputs :
       mongodb_username : ${{ env.MONGODB_USERNAME }}
   deploy:
@@ -41,5 +41,5 @@ jobs:
     steps:
       - name: Output information
         run: |        
-          echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo "MONGODB_USERNAME: $mongodb_user"
  
