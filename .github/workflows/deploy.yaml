@@ -8,8 +8,8 @@ jobs:
   test:
     env:
         MONGODB_CLUSTER_ADDRESS: cluster0.0whp0.mongodb.net
-        MONGODB_USERNAME: guna
-        MONGODB_PASSWORD: guna
+        MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}  # Corrected line
+        MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
         PORT: 8080
     runs-on: ubuntu-latest
     steps:
@@ -31,15 +31,14 @@ jobs:
       - name: Output information
         run: |
          echo "MONGODB_USERNAME: $mongodb_user"
-    outputs :
-      mongodb_username : ${{ env.MONGODB_USERNAME }}
+    outputs:
+      mongodb_username: ${{ env.MONGODB_USERNAME }}
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    env    : 
+    env:
       MONGODB_USERNAME: ${{ needs.test.outputs.mongodb_username }}  # <-- Get from `test` job
     steps:
       - name: Output information
         run: |        
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
- 
